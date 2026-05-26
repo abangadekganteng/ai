@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blacki AI Studio</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    color:white;
+    overflow:hidden;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container{
+    width:100%;
+    height:100vh;
+    display:flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:260px;
+    background:#151515;
+    border-right:1px solid #262626;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#ff00c8;
+    margin-bottom:30px;
+}
+
+.logo span{
+    color:white;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.menu button{
+    background:#202020;
+    border:none;
+    color:white;
+    padding:14px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:0.2s;
+    text-align:left;
+    font-size:15px;
+}
+
+.menu button:hover{
+    background:#313131;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    padding:20px;
+    border-bottom:1px solid #262626;
+    background:#101010;
+}
+
+.header h1{
+    font-size:24px;
+}
+
+.header p{
+    margin-top:6px;
+    color:#ff00c8;
+    font-size:14px;
+}
+
+/* =========================
+   CHAT AREA
+========================= */
+
+.chat-box{
+    flex:1;
+    overflow-y:auto;
+    padding:25px;
+    scroll-behavior:smooth;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    display:flex;
+    margin-bottom:18px;
+    animation:fade 0.3s ease;
+}
+
+.bot{
+    justify-content:flex-start;
+}
+
+.user{
+    justify-content:flex-end;
+}
+
+.bubble{
+    max-width:75%;
+    padding:15px 18px;
+    border-radius:18px;
+    line-height:1.6;
+    word-wrap:break-word;
+}
+
+.bot .bubble{
+    background:#1f1f1f;
+}
+
+.user .bubble{
+    background:#ff00c8;
+    color:white;
+}
+
+/* =========================
+   QUICK BUTTONS
+========================= */
+
+.quick-buttons{
+    padding:15px 20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    border-top:1px solid #262626;
+    background:#101010;
+}
+
+.quick-buttons button{
+    border:none;
+    background:#1f1f1f;
+    color:white;
+    padding:12px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.quick-buttons button:hover{
+    background:#2f2f2f;
+}
+
+/* =========================
+   INPUT
+========================= */
+
+.chat-input{
+    padding:18px;
+    display:flex;
+    gap:12px;
+    background:#151515;
+    border-top:1px solid #262626;
+}
+
+.chat-input input{
+    flex:1;
+    background:#202020;
+    border:none;
+    outline:none;
+    color:white;
+    padding:15px;
+    border-radius:15px;
+    font-size:15px;
+}
+
+.chat-input button{
+    border:none;
+    background:#ff00c8;
+    color:white;
+    padding:15px 22px;
+    border-radius:15px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* =========================
+   TYPING
+========================= */
+
+.typing{
+    display:none;
+    padding:0 25px 15px;
+    color:#999;
+    font-size:14px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#444;
+    border-radius:20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid #262626;
+    }
+
+    .menu{
+        flex-direction:row;
+        overflow-x:auto;
+    }
+
+    .menu button{
+        min-width:160px;
+    }
+
+    .bubble{
+        max-width:90%;
+    }
+
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            Blacki <span>AI</span>
+        </div>
+
+        <div class="menu">
+            <button onclick="quickAsk('halo')">👋 Halo</button>
+            <button onclick="quickAsk('ide video')">🔥 Ide Video</button>
+            <button onclick="quickAsk('hook viral')">🎬 Hook Viral</button>
+            <button onclick="quickAsk('caption youtube')">✍️ Caption</button>
+            <button onclick="quickAsk('performa channel')">📈 Analitik</button>
+            <button onclick="quickAsk('channel youtube')">▶️ Channel</button>
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>bot_...--.-...</h1>
+            <p id="typingHeader"></p>
+        </div>
+
+        <!-- CHAT -->
+        <div class="chat-box" id="chatBox">
+
+            <div class="message bot">
+                <div class="bubble">
+                    Halo bang 😄<br><br>
+                    Saya AI khusus website Blacki Studio.<br>
+                    Silakan tanyakan sesuatu.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- QUICK BUTTON -->
+        <div class="quick-buttons">
+
+            <button onclick="quickAsk('cara upload video')">
+                Cara Upload
+            </button>
+
+            <button onclick="quickAsk('template viral')">
+                Template Viral
+            </button>
+
+            <button onclick="quickAsk('edit capcut')">
+                Edit CapCut
+            </button>
+
+            <button onclick="quickAsk('shorts youtube')">
+                Shorts YouTube
+            </button>
+
+        </div>
+
+        <!-- TYPING -->
+        <div class="typing" id="typing">
+            AI sedang mengetik...
+        </div>
+
+        <!-- INPUT -->
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Tanyakan sesuatu..."
+            >
+
+            <button onclick="sendMessage()">
+                Kirim
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   HEADER TYPING
+========================= */
+
+const text = "Ada yang bisa dibantu?";
+let i = 0;
+
+function typingHeader(){
+
+    if(i < text.length){
+
+        document.getElementById("typingHeader")
+        .innerHTML += text.charAt(i);
+
+        i++;
+
+        setTimeout(typingHeader, 70);
+
+    }
+
+}
+
+typingHeader();
+
+/* =========================
+   ADD MESSAGE
+========================= */
+
+function addMessage(message, sender){
+
+    const chatBox = document.getElementById("chatBox");
+
+    const div = document.createElement("div");
+
+    div.className = `message ${sender}`;
+
+    div.innerHTML = `
+        <div class="bubble">${message}</div>
+    `;
+
+    chatBox.appendChild(div);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
+/* =========================
+   AI REPLY
+========================= */
+
+function aiReply(message){
+
+    message = message.toLowerCase();
+
+    if(message.includes("halo")){
+        return "Halo juga bang 😄";
+    }
+
+    else if(message.includes("ide video")){
+        return `
+        🔥 Ide video viral:<br><br>
+        • Template CapCut sad<br>
+        • Hook lucu auto FYP<br>
+        • Tutorial edit cepat<br>
+        • Efek transisi anime
+        `;
+    }
+
+    else if(message.includes("hook")){
+        return `
+        🎬 Hook viral:<br><br>
+        “Pas kamera kebuka tanpa sengaja...”<br><br>
+        “POV: edit pertama langsung viral”
+        `;
+    }
+
+    else if(message.includes("caption")){
+        return `
+        ✍️ Caption:<br><br>
+        “Cuma modal HP kentang 😭🔥”
+        `;
+    }
+
+    else if(message.includes("performa")){
+        return `
+        📈 Channel meningkat dalam 28 hari terakhir.
+        `;
+    }
+
+    else if(message.includes("channel")){
+        return `
+        ▶️ YouTube:<br>
+        @blacki-2
+        `;
+    }
+
+    else if(message.includes("upload")){
+        return `
+        📤 Cara upload:<br><br>
+        1. Buka YouTube Studio<br>
+        2. Klik upload<br>
+        3. Pilih video<br>
+        4. Tambahkan judul
+        `;
+    }
+
+    else if(message.includes("template")){
+        return `
+        🔥 Template viral sedang trending minggu ini.
+        `;
+    }
+
+    else if(message.includes("capcut")){
+        return `
+        ✂️ Gunakan:
+        <br><br>
+        • 720p<br>
+        • FPS 25<br>
+        • Auto beat
+        `;
+    }
+
+    else if(message.includes("shorts")){
+        return `
+        📱 Shorts terbaik:
+        <br><br>
+        • Durasi 15-30 detik<br>
+        • Hook 3 detik pertama<br>
+        • Subtitle besar
+        `;
+    }
+
+    else{
+        return `
+        Maaf saya hanya menjawab pertanyaan website ini.
+        `;
+    }
+
+}
+
+/* =========================
+   SEND MESSAGE
+========================= */
+
+function sendMessage(){
+
+    const input = document.getElementById("userInput");
+
+    const message = input.value.trim();
+
+    if(message === "") return;
+
+    addMessage(message, "user");
+
+    input.value = "";
+
+    document.getElementById("typing")
+    .style.display = "block";
+
+    setTimeout(() => {
+
+        document.getElementById("typing")
+        .style.display = "none";
+
+        const reply = aiReply(message);
+
+        addMessage(reply, "bot");
+
+    }, 1000);
+
+}
+
+/* =========================
+   QUICK ASK
+========================= */
+
+function quickAsk(text){
+
+    document.getElementById("userInput").value = text;
+
+    sendMessage();
+
+}
+
+/* =========================
+   ENTER KEY
+========================= */
+
+document
+.getElementById("userInput")
+.addEventListener("keypress", function(e){
+
+    if(e.key === "Enter"){
+        sendMessage();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+
+  
