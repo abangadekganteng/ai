@@ -1,0 +1,21 @@
+[
+    {
+        "keyword": ["halo", "hai"],
+        "reply": "Halo juga bang 😄"
+    },
+
+    {
+        "keyword": ["ide video"],
+        "reply": "🔥 Ide video viral:<br><br>• Template CapCut<br>• Hook lucu<br>• Tutorial edit"
+    },
+
+    {
+        "keyword": ["capcut"],
+        "reply": "✂️ Gunakan auto beat + transisi cepat."
+    },
+
+    {
+        "keyword": ["youtube"],
+        "reply": "▶️ Channel YouTube:<br>@blacki-2"
+    }
+]
