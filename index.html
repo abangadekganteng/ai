@@ -1,89 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minta Studio AI</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Blacki AI</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="app">
+  <div class="chat-container">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <div class="topbar">
+      <h1>Minta Studio</h1>
+    </div>
 
-        <h1>Blacki AI</h1>
+    <div class="hero">
+      <h2>Halo, bot_...</h2>
+      <p>Ada yang bisa dibantu?</p>
+    </div>
 
-        <button onclick="quickAsk('halo')">
-            Halo
-        </button>
+    <div class="suggestions">
+      <button onclick="sendSuggestion('Ringkas komentar')">
+        Ringkas komentar
+      </button>
 
-        <button onclick="quickAsk('ide video')">
-            Ide Video
-        </button>
+      <button onclick="sendSuggestion('Sarankan ide video baru')">
+        Sarankan ide video baru
+      </button>
 
-        <button onclick="quickAsk('capcut')">
-            Edit CapCut
-        </button>
+      <button onclick="sendSuggestion('Ringkas performa channel saya')">
+        Ringkas performa channel saya
+      </button>
+    </div>
 
-        <button onclick="quickAsk('youtube')">
-            YouTube
-        </button>
+    <div class="chat-box" id="chatBox"></div>
 
-    </aside>
+    <div class="input-area">
+      <input 
+        type="text" 
+        id="userInput" 
+        placeholder="Tanyakan sesuatu..."
+      >
 
-    <!-- MAIN -->
-    <main class="main">
+      <button onclick="sendMessage()">
+        Kirim
+      </button>
+    </div>
 
-        <header class="topbar">
+  </div>
 
-            <h2>bot_...--.-...</h2>
-
-            <p>
-                AI khusus website Blacki
-            </p>
-
-        </header>
-
-        <!-- CHAT -->
-        <section class="chat-box" id="chatBox">
-
-            <div class="message bot">
-                <div class="bubble">
-                    Halo bang 😄
-                </div>
-            </div>
-
-        </section>
-
-        <!-- INPUT -->
-        <div class="input-area">
-
-            <input
-                type="text"
-                id="userInput"
-                placeholder="Tulis pesan..."
-            >
-
-            <button onclick="sendMessage()">
-                Kirim
-            </button>
-
-        </div>
-
-    </main>
-
-</div>
-
-<script src="js/app.js"></script>
+  <script src="responses.js"></script>
+  <script src="script.js"></script>
 
 </body>
-</html></html>
-
-  
+</html>
