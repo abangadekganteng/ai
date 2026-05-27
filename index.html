@@ -1,57 +1,81 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Minta Studio AI</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  />
 </head>
+
 <body>
 
   <div class="chat-container">
 
+    <!-- TOPBAR -->
     <div class="topbar">
       <h1>Minta Studio</h1>
     </div>
 
+    <!-- HERO -->
     <div class="hero">
+
       <h2>Halo, bot_...</h2>
-      <p>Ada yang bisa dibantu?</p>
+
+      <p>
+        Ada yang bisa dibantu?
+      </p>
+
     </div>
 
-    <div class="suggestions">
-      <button onclick="sendSuggestion('Ringkas komentar')">
-        Ringkas komentar
-      </button>
+    <!-- SUGGESTIONS -->
+    <div
+      class="suggestions"
+      id="suggestions"
+    ></div>
 
-      <button onclick="sendSuggestion('Sarankan ide video baru')">
-        Sarankan ide video baru
-      </button>
+    <!-- CHAT -->
+    <div
+      class="chat-box"
+      id="chatBox"
+    ></div>
 
-      <button onclick="sendSuggestion('Ringkas performa channel saya')">
-        Ringkas performa channel saya
-      </button>
-    </div>
-
-    <div class="chat-box" id="chatBox"></div>
-
+    <!-- INPUT -->
     <div class="input-area">
-      <input 
-        type="text" 
-        id="userInput" 
-        placeholder="Tanyakan sesuatu..."
-      >
 
-      <button onclick="sendMessage()">
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Tanyakan sesuatu..."
+      />
+
+      <button
+        onclick="sendMessage()"
+      >
         Kirim
       </button>
+
     </div>
 
   </div>
 
+  <!-- DATA -->
   <script src="data/responses.js"></script>
+
+  <!-- APP -->
   <script src="js/app.js"></script>
 
 </body>
+
 </html>
