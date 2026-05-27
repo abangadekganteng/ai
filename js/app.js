@@ -4,6 +4,11 @@ document.getElementById("chatBox");
 const userInput =
 document.getElementById("userInput");
 
+const suggestions =
+document.getElementById("suggestions");
+
+
+
 function addMessage(text, sender){
 
   const message =
@@ -22,6 +27,8 @@ function addMessage(text, sender){
   chatBox.scrollHeight;
 }
 
+
+
 function getBotResponse(message){
 
   const lower =
@@ -38,8 +45,10 @@ function getBotResponse(message){
     }
   }
 
-  return "Maaf, pertanyaan belum tersedia.";
+  return "Maaf, jawaban belum tersedia.";
 }
+
+
 
 function sendMessage(){
 
@@ -57,10 +66,14 @@ function sendMessage(){
 
     addMessage(botReply, "bot");
 
+    loadSuggestions();
+
   }, 500);
 
   userInput.value = "";
 }
+
+
 
 function sendSuggestion(text){
 
@@ -68,6 +81,35 @@ function sendSuggestion(text){
 
   sendMessage();
 }
+
+
+
+function loadSuggestions(){
+
+  suggestions.innerHTML = "";
+
+  const shuffled =
+  [...responses]
+  .sort(() => 0.5 - Math.random())
+  .slice(0,3);
+
+  shuffled.forEach(item => {
+
+    const button =
+    document.createElement("button");
+
+    button.innerText =
+    item.question;
+
+    button.onclick = () =>
+    sendSuggestion(item.question);
+
+    suggestions.appendChild(button);
+
+  });
+}
+
+
 
 userInput.addEventListener(
 "keypress",
@@ -78,63 +120,7 @@ function(e){
     sendMessage();
   }
 });
-        for(let key of item.keyword){
 
-            if(message.includes(key)){
 
-                return item.reply;
 
-            }
-
-        }
-
-    }
-
-    return "Maaf saya hanya menjawab pertanyaan website ini.";
-
-}
-
-// KIRIM
-function sendMessage(){
-
-    const input = document.getElementById("userInput");
-
-    const text = input.value.trim();
-
-    if(text === "") return;
-
-    addMessage(text, "user");
-
-    input.value = "";
-
-    setTimeout(() => {
-
-        const reply = findReply(text);
-
-        addMessage(reply, "bot");
-
-    }, 500);
-
-}
-
-// QUICK BUTTON
-function quickAsk(text){
-
-    document.getElementById("userInput").value = text;
-
-    sendMessage();
-
-}
-
-// ENTER
-document
-.getElementById("userInput")
-.addEventListener("keypress", function(e){
-
-    if(e.key === "Enter"){
-
-        sendMessage();
-
-    }
-
-});
+loadSuggestions();
