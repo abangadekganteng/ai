@@ -39,7 +39,7 @@
 
 <body>
 
-  <!-- MAIN -->
+  <!-- MAIN CHAT -->
   <div class="chat-container">
 
     <!-- TOPBAR -->
@@ -80,50 +80,53 @@
 
 
     <!-- SUGGESTIONS -->
-    <div
-      class="suggestions"
-      id="suggestions"
-    ></div>
+    <div class="bottom-wrapper">
+
+      <div
+        class="suggestions"
+        id="suggestions"
+      ></div>
 
 
 
-    <!-- MORE -->
-    <div class="more-wrapper">
+      <!-- INPUT -->
+      <div class="input-wrapper">
 
-      <button
-        class="more-btn"
-        onclick="openSuggestionsPage()"
-      >
-
-        Saran lainnya
-
-      </button>
-
-    </div>
-
-
-
-    <!-- INPUT -->
-    <div class="input-wrapper">
-
-      <div class="input-area">
-
-        <input
-          type="text"
-          id="userInput"
-          placeholder="Tanyakan sesuatu..."
-        />
-
+        <!-- MORE BUTTON -->
         <button
-          class="send-btn"
-          onclick="sendMessage()"
+          class="more-btn"
+          onclick="openSuggestionsPage()"
         >
 
-          <span class="material-symbols-outlined">
-            send
-          </span>
+          Saran lainnya
 
         </button>
+
+
+
+        <!-- INPUT AREA -->
+        <div class="input-area">
+
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Tanyakan sesuatu..."
+          />
+
+
+
+          <button
+            class="send-btn"
+            onclick="sendMessage()"
+          >
+
+            <span class="material-symbols-outlined">
+              send
+            </span>
+
+          </button>
+
+        </div>
 
       </div>
 
@@ -135,7 +138,9 @@
 
 
 
-  <!-- PAGE ALL SUGGESTIONS -->
+
+
+  <!-- ALL SUGGESTIONS PAGE -->
   <div
     class="all-suggestions-page"
     id="allSuggestionsPage"
@@ -148,8 +153,12 @@
         class="back-btn"
         onclick="closeSuggestionsPage()"
       >
+
         ← Kembali
+
       </button>
+
+
 
       <h2>
         Semua Saran
@@ -163,9 +172,21 @@
     <div
       class="all-suggestions-list"
       id="allSuggestionsList"
-    ></div>
+    >
+
+      <!-- EXAMPLE -->
+      <!--
+      <button onclick="chooseSuggestion('Ringkas komentar')">
+        Ringkas komentar
+      </button>
+      -->
+
+    </div>
 
   </div>
+
+
+
 
 
 
