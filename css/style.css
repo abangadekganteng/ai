@@ -6,97 +6,63 @@
 }
 
 body{
-  background:black;
+  background:#000;
   color:white;
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   min-height:100vh;
-  padding:20px;
+
+  overflow:hidden;
 }
 
 .chat-container{
   width:100%;
-  max-width:420px;
-  height:90vh;
+  max-width:450px;
+  height:100vh;
 
-  background:#0a0a0a;
-
-  border-radius:30px;
-
-  border:1px solid #2a2a2a;
+  background:#050505;
 
   display:flex;
   flex-direction:column;
 
-  overflow:hidden;
-
-  box-shadow:
-  0 0 20px rgba(176,38,255,0.2);
+  position:relative;
 }
 
 .topbar{
   padding:20px;
+
   border-bottom:1px solid #222;
 }
 
 .topbar h1{
-  font-size:30px;
-  font-weight:bold;
+  font-size:28px;
 }
 
 .hero{
-  padding:25px;
+  padding:30px 20px 10px;
 }
 
 .hero h2{
   font-size:45px;
+
   margin-bottom:10px;
 }
 
 .hero p{
-  font-size:38px;
+  font-size:40px;
   font-weight:bold;
 
   background:linear-gradient(
-  90deg,
-  #b026ff,
-  #ff3d81
+    90deg,
+    #b026ff,
+    #ff3d81
   );
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-}
-
-.suggestions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-
-  padding:0 20px 20px;
-}
-
-.suggestions button{
-  background:#111;
-
-  border:1px solid #333;
-
-  color:white;
-
-  padding:12px 18px;
-
-  border-radius:999px;
-
-  cursor:pointer;
-
-  transition:0.3s;
-}
-
-.suggestions button:hover{
-  border-color:#b026ff;
-
-  box-shadow:
-  0 0 15px rgba(176,38,255,0.5);
 }
 
 .chat-box{
@@ -113,13 +79,15 @@ body{
 }
 
 .message{
-  max-width:80%;
+  max-width:85%;
 
-  padding:14px;
+  padding:14px 16px;
 
-  border-radius:18px;
+  border-radius:20px;
 
-  line-height:1.5;
+  line-height:1.6;
+
+  white-space:pre-line;
 }
 
 .user{
@@ -131,53 +99,192 @@ body{
 .bot{
   align-self:flex-start;
 
-  background:#1a1a1a;
+  background:#151515;
 
-  border:1px solid #333;
+  border:1px solid #2d2d2d;
 }
 
-.input-area{
+.bottom-wrapper{
+  padding:15px;
+}
+
+.suggestions{
   display:flex;
+  flex-wrap:wrap;
 
   gap:10px;
 
-  padding:20px;
-
-  border-top:1px solid #222;
+  margin-bottom:15px;
 }
 
-.input-area input{
-  flex:1;
-
+.suggestions button,
+.more-btn{
   background:#111;
 
-  border:1px solid #333;
+  border:1px solid #2f2f2f;
 
   color:white;
 
-  padding:15px;
+  padding:12px 18px;
 
-  border-radius:15px;
-
-  outline:none;
-}
-
-.input-area button{
-  background:#b026ff;
-
-  border:none;
-
-  color:white;
-
-  padding:15px 20px;
-
-  border-radius:15px;
+  border-radius:999px;
 
   cursor:pointer;
 
   transition:0.3s;
 }
 
-.input-area button:hover{
-  opacity:0.8;
+.suggestions button:hover,
+.more-btn:hover{
+  border-color:#b026ff;
+
+  box-shadow:
+  0 0 20px rgba(176,38,255,0.3);
+}
+
+.input-wrapper{
+  display:flex;
+  align-items:flex-end;
+
+  gap:10px;
+}
+
+.input-area{
+  flex:1;
+
+  background:#0d0d0d;
+
+  border:1px solid #2d2d2d;
+
+  border-radius:25px;
+
+  display:flex;
+  align-items:flex-end;
+
+  padding:10px 10px 10px 18px;
+}
+
+.input-area input{
+  flex:1;
+
+  background:transparent;
+
+  border:none;
+
+  color:white;
+
+  outline:none;
+
+  font-size:15px;
+}
+
+.send-btn{
+  width:45px;
+  height:45px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#b026ff;
+
+  color:white;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.send-btn:hover{
+  transform:scale(1.05);
+}
+
+.material-symbols-outlined{
+  font-size:22px;
+}
+
+.all-suggestions-page{
+  position:fixed;
+
+  inset:0;
+
+  background:#050505;
+
+  z-index:999;
+
+  display:none;
+
+  flex-direction:column;
+}
+
+.all-header{
+  padding:20px;
+
+  border-bottom:1px solid #222;
+
+  display:flex;
+  align-items:center;
+
+  gap:15px;
+}
+
+.back-btn{
+  background:#111;
+
+  border:1px solid #2d2d2d;
+
+  color:white;
+
+  padding:10px 16px;
+
+  border-radius:999px;
+
+  cursor:pointer;
+}
+
+.all-header h2{
+  font-size:24px;
+}
+
+.all-suggestions-list{
+  flex:1;
+
+  overflow-y:auto;
+
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:12px;
+}
+
+.all-suggestions-list button{
+  background:#111;
+
+  border:1px solid #2d2d2d;
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  text-align:left;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.all-suggestions-list button:hover{
+  border-color:#b026ff;
+
+  box-shadow:
+  0 0 15px rgba(176,38,255,0.2);
+  }
 }
