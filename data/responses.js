@@ -1,51 +1,53 @@
 const responses = [
 
 {
-  keywords: [
-    "ringkas komentar",
-    "komentar"
-  ],
+  keywords: ["ringkas komentar","komentar"],
+
+  question:
+  "Ringkas komentar",
 
   answer:
-  "Komentar terbaru Anda positif. Banyak penonton menyukai editing dan style video Anda."
+  "Komentar terbaru Anda positif. Banyak penonton menyukai editing video Anda."
 },
 
 {
-  keywords: [
-    "ide video",
-    "video baru"
-  ],
+  keywords: ["ide video","video baru"],
+
+  question:
+  "Sarankan ide video baru",
 
   answer:
-  "Ide video baru:\n1. Tutorial editing dark aesthetic\n2. Intro cinematic HP\n3. Efek glow viral CapCut"
+  "Ide video:\n1. Tutorial cinematic\n2. Efek glow viral\n3. Intro anime edit"
 },
 
 {
-  keywords: [
-    "performa",
-    "channel"
-  ],
+  keywords: ["performa","channel"],
+
+  question:
+  "Ringkas performa channel saya",
 
   answer:
-  "Performa channel meningkat 24% minggu ini. Shorts mendapatkan view paling tinggi."
+  "Performa channel meningkat 24% minggu ini."
 },
 
 {
-  keywords: [
-    "thumbnail"
-  ],
+  keywords: ["thumbnail"],
+
+  question:
+  "Cara membuat thumbnail bagus?",
 
   answer:
-  "Gunakan thumbnail warna kontras dan teks besar agar CTR meningkat."
+  "Gunakan warna kontras dan teks besar."
 },
 
 {
-  keywords: [
-    "judul"
-  ],
+  keywords: ["judul"],
+
+  question:
+  "Cara membuat judul menarik?",
 
   answer:
-  "Gunakan judul pendek, jelas, dan memancing rasa penasaran."
+  "Gunakan judul pendek dan bikin penasaran."
 }
 
 ];
