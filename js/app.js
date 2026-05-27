@@ -7,9 +7,31 @@ document.getElementById("userInput");
 const suggestions =
 document.getElementById("suggestions");
 
+const hero =
+document.getElementById("hero");
+
+const allSuggestionsPage =
+document.getElementById(
+  "allSuggestionsPage"
+);
+
+const allSuggestionsList =
+document.getElementById(
+  "allSuggestionsList"
+);
+
+
+
+function hideHero(){
+
+  hero.style.display = "none";
+}
+
 
 
 function addMessage(text, sender){
+
+  hideHero();
 
   const message =
   document.createElement("div");
@@ -105,6 +127,55 @@ function loadSuggestions(){
     sendSuggestion(item.question);
 
     suggestions.appendChild(button);
+
+  });
+}
+
+
+
+function openSuggestionsPage(){
+
+  allSuggestionsPage.style.display =
+  "flex";
+
+  loadAllSuggestions();
+}
+
+
+
+function closeSuggestionsPage(){
+
+  allSuggestionsPage.style.display =
+  "none";
+}
+
+
+
+function chooseSuggestion(text){
+
+  closeSuggestionsPage();
+
+  sendSuggestion(text);
+}
+
+
+
+function loadAllSuggestions(){
+
+  allSuggestionsList.innerHTML = "";
+
+  responses.forEach(item => {
+
+    const button =
+    document.createElement("button");
+
+    button.innerText =
+    item.question;
+
+    button.onclick = () =>
+    chooseSuggestion(item.question);
+
+    allSuggestionsList.appendChild(button);
 
   });
 }
