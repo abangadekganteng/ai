@@ -1,9 +1,8 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
+
   <meta charset="UTF-8" />
 
   <meta
@@ -13,25 +12,56 @@
 
   <title>Minta Studio AI</title>
 
+  <!-- GOOGLE FONT -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
   <link
     rel="stylesheet"
     href="css/style.css"
   />
+
 </head>
 
 <body>
 
+  <!-- MAIN -->
   <div class="chat-container">
 
     <!-- TOPBAR -->
     <div class="topbar">
-      <h1>Minta Studio</h1>
+
+      <h1>
+        Minta Studio
+      </h1>
+
     </div>
 
-    <!-- HERO -->
-    <div class="hero">
 
-      <h2>Halo, bot_...</h2>
+
+    <!-- HERO -->
+    <div
+      class="hero"
+      id="hero"
+    >
+
+      <h2>
+        Halo, bot_...
+      </h2>
 
       <p>
         Ada yang bisa dibantu?
@@ -39,11 +69,7 @@
 
     </div>
 
-    <!-- SUGGESTIONS -->
-    <div
-      class="suggestions"
-      id="suggestions"
-    ></div>
+
 
     <!-- CHAT -->
     <div
@@ -51,24 +77,97 @@
       id="chatBox"
     ></div>
 
-    <!-- INPUT -->
-    <div class="input-area">
 
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Tanyakan sesuatu..."
-      />
+
+    <!-- SUGGESTIONS -->
+    <div
+      class="suggestions"
+      id="suggestions"
+    ></div>
+
+
+
+    <!-- MORE -->
+    <div class="more-wrapper">
 
       <button
-        onclick="sendMessage()"
+        class="more-btn"
+        onclick="openSuggestionsPage()"
       >
-        Kirim
+
+        Saran lainnya
+
       </button>
 
     </div>
 
+
+
+    <!-- INPUT -->
+    <div class="input-wrapper">
+
+      <div class="input-area">
+
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Tanyakan sesuatu..."
+        />
+
+        <button
+          class="send-btn"
+          onclick="sendMessage()"
+        >
+
+          <span class="material-symbols-outlined">
+            send
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
+
+
+
+
+
+  <!-- PAGE ALL SUGGESTIONS -->
+  <div
+    class="all-suggestions-page"
+    id="allSuggestionsPage"
+  >
+
+    <!-- HEADER -->
+    <div class="all-header">
+
+      <button
+        class="back-btn"
+        onclick="closeSuggestionsPage()"
+      >
+        ← Kembali
+      </button>
+
+      <h2>
+        Semua Saran
+      </h2>
+
+    </div>
+
+
+
+    <!-- LIST -->
+    <div
+      class="all-suggestions-list"
+      id="allSuggestionsList"
+    ></div>
+
+  </div>
+
+
 
   <!-- DATA -->
   <script src="data/responses.js"></script>
