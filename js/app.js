@@ -1,40 +1,83 @@
-let responses = [];
+const chatBox =
+document.getElementById("chatBox");
 
-// LOAD JSON
-fetch("data/response.json")
-.then(res => res.json())
-.then(data => {
+const userInput =
+document.getElementById("userInput");
 
-    responses = data;
-
-});
-
-// ADD MESSAGE
 function addMessage(text, sender){
 
-    const chatBox = document.getElementById("chatBox");
+  const message =
+  document.createElement("div");
 
-    const div = document.createElement("div");
+  message.classList.add(
+    "message",
+    sender
+  );
 
-    div.className = `message ${sender}`;
+  message.innerText = text;
 
-    div.innerHTML = `
-        <div class="bubble">${text}</div>
-    `;
+  chatBox.appendChild(message);
 
-    chatBox.appendChild(div);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-
+  chatBox.scrollTop =
+  chatBox.scrollHeight;
 }
 
-// CARI JAWABAN
-function findReply(message){
+function getBotResponse(message){
 
-    message = message.toLowerCase();
+  const lower =
+  message.toLowerCase();
 
-    for(let item of responses){
+  for(let item of responses){
 
+    for(let keyword of item.keywords){
+
+      if(lower.includes(keyword)){
+
+        return item.answer;
+      }
+    }
+  }
+
+  return "Maaf, pertanyaan belum tersedia.";
+}
+
+function sendMessage(){
+
+  const text =
+  userInput.value.trim();
+
+  if(text === "") return;
+
+  addMessage(text, "user");
+
+  const botReply =
+  getBotResponse(text);
+
+  setTimeout(() => {
+
+    addMessage(botReply, "bot");
+
+  }, 500);
+
+  userInput.value = "";
+}
+
+function sendSuggestion(text){
+
+  userInput.value = text;
+
+  sendMessage();
+}
+
+userInput.addEventListener(
+"keypress",
+function(e){
+
+  if(e.key === "Enter"){
+
+    sendMessage();
+  }
+});
         for(let key of item.keyword){
 
             if(message.includes(key)){
